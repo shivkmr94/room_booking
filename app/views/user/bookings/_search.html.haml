@@ -1,0 +1,24 @@
+%section.container
+  .container-page
+    .col-md-6
+      %h3.dark-grey Search Avaible Room
+      = form_tag user_bookings_url, :method => :get do
+        .form-group
+          %label{:for => "disabledSelect"} Room
+          = select_tag :room_type, options_for_select(RoomType.all.collect{|c| c.name}.uniq, params[:room_type]), :class  => "form-control", :prompt => "Type Of Rooms", :id => "disabledSelect", :required => true
+        .form-group.col-lg-6
+          %label Check In
+          = text_field_tag("check_in", params[:check_in], :class => "form-control", :id => "datepicker1", :required => true)
+          
+        .form-group.col-lg-6
+          %label Check Out
+          = text_field_tag "check_out", params[:check_out], :id => "datepicker2", :class => "form-control", :required => true
+        .col-sm--6
+          = hidden_field_tag :search, "true"
+          %button.btn.btn-primary{:type => "submit"} Search
+      .col-md-6
+:javascript
+  $(document).ready(function(){
+  $( "#datepicker1" ).datepicker();
+  $( "#datepicker2" ).datepicker();
+  });

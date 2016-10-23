@@ -1,0 +1,24 @@
+.row
+  .col-md-8.col-md-offset-2
+    %h1 Bookings Details
+    
+    %table.table.table-striped.table-hover
+      %thead
+        %tr
+          %th User
+          %th Room Type
+          %th Room NO
+          %th Price
+          %th Check In Date
+          %th Check Out Date
+        - if @bookings.present?
+          - @bookings.each do |booking|
+            %tbody
+              %tr
+                %td= booking.user.email
+                %td= booking.room.room_type.name
+                %td= booking.room.room_no
+                %td= booking.total_amount
+                %td= booking.start_date
+                %td= booking.start_date
+            

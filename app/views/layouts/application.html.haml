@@ -1,0 +1,35 @@
+!!!
+%html
+  %head
+    %title Hotel Booking
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    .navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          %a.navbar-brand{:href => "../"} Online Room Booking
+          %button.navbar-toggle{"data-target" => "#navbar-main", "data-toggle" => "collapse", :type => "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+        #navbar-main.navbar-collapse.collapse
+          %ul.nav.navbar-nav
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              - if user_signed_in?
+                = current_user.email
+                = link_to "Sign out", destroy_user_session_path, :method => :delete
+              - else
+                = link_to "Sign up", new_user_registration_path
+            %li or
+            %li= link_to "sign in", new_user_session_path
+    %br
+      %br
+        %br
+          %br
+            .container
+              %p.notice= notice
+              %p.alert= alert
+              = yield

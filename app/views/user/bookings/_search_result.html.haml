@@ -1,0 +1,21 @@
+- if params[:search].present?
+  .row
+    .col-md-8
+      %h3 Available Rooms
+      
+      %table.table.table-striped.table-hover
+        %thead
+          - if @avaible_room.present?
+            %tr
+              %th Available rooms
+              %th Price per room
+            %tbody
+              %tr
+                %td
+                  = @avaible_room.first rescue nil
+                %td= @avaible_room.last rescue nil
+                %td
+                  - if @avaible_room.first > 0 
+                    = link_to 'Book Now', new_user_booking_path
+       
+              

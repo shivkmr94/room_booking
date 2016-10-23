@@ -1,0 +1,19 @@
+.row
+  .col-md-7.col-md-offset-2
+    %h1 Booking History
+    %table.table.table-striped.table-hover
+      %thead
+        %tr
+          %th Room NO
+          %th Price
+          %th Check In Date
+          %th Check Out Date
+         
+      
+        %tbody
+          %tr
+            %td= @booking.room.room_no
+            %td= @booking.total_amount
+            %td= @booking.start_date
+            %td= @booking.start_date
+            

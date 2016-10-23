@@ -1,0 +1,7 @@
+= form_for [:user, @booking] do |f|
+  = f.collection_select :room_type_id, RoomType.all, :id, :name, {:selected => f.object.room_type_id, :prompt => "select room type"}
+  = f.hidden_field :room_type_id, :value => session[:user_search]['room_type'] 
+  = f.hidden_field :start_date, :id => "datepicker1"
+  = f.hidden_field :end_date, :value => (session[:user_search]['check_in'] rescue ''), :id => "datepicker2"
+  .actions
+    = f.submit 'Book', :class => 'btn btn-primary'

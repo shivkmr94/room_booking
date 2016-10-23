@@ -1,0 +1,30 @@
+.row
+  .col-md-5.col-md-offset-10
+= render :partial => 'search'
+- if params[:room_type].present? or params[:check_in].present? or params[:check_out].present?
+  = render :partial => 'search_result'
+- if current_user.present? and @bookings.present?
+  .row
+    .col-md-7
+      %h1 Booking History
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th Room Type
+            %th Room NO
+            %th Price
+            %th Check In Date
+            %th Check Out Date
+            %th{:colspan => "3"}
+              %center Action
+        - if @bookings.present?
+          - @bookings.each do |booking|
+            %tbody
+              %tr
+                %td= booking.room.room_type.name
+                %td= booking.room.room_no
+                %td= booking.total_amount
+                %td= booking.start_date
+                %td= booking.end_date
+                %td= link_to 'Show', user_booking_path(booking)
+                %td= link_to 'Edit', edit_user_booking_path(booking)

@@ -1,0 +1,23 @@
+.row
+  .col-md-5.col-md-offset-2
+    %h1 Romes
+    
+    = link_to 'New Room', new_admin_room_path
+    %table.table.table-striped.table-hover
+      %thead
+        %tr
+          %th Room Type
+          %th Room NO
+          %th Price
+          %th{:colspan => "3"}
+            %center Action
+      - if @rooms.present?
+        - @rooms.each do |room|
+          %tbody
+            %tr
+              %td= room.room_type.name
+              %td= room.room_no
+              %td= room.room_type.price
+              %td= link_to 'Edit', edit_admin_room_path(room)
+              %td= link_to 'Destroy',admin_room_path(room), method: :delete, data: { confirm: 'Are you sure?' }
+            

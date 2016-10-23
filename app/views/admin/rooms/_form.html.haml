@@ -1,0 +1,11 @@
+= form_for [:admin, @room] do |f|
+  = f.label "Name  :"
+  = f.text_field :room_no 
+  %br/
+  %br/
+  = f.label "Room Type  :"
+  = f.collection_select :room_type_id, RoomType.all, :id, :name, {:selected => f.object.room_type_id, :prompt => "select room type"}
+  %br/
+  %br/
+  .actions
+    = f.submit 'Save'

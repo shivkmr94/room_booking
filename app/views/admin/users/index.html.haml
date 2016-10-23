@@ -1,0 +1,21 @@
+.row
+  .col-md-5.col-md-offset-2
+    %h1 
+    - if !flash[:notice].blank?
+      .alert.alert-dismissable.alert-success
+        %button.close{"data-dismiss" => "alert", :type => "button"} ×
+        = flash[:notice]
+    %table.table.table-striped.table-hover
+      %thead
+        %tr
+          %th
+          %th Email
+          
+            
+      - @users.each do |user|
+        %tbody
+          %tr
+            %td
+            %td= user.email
+            
+            
